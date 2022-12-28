@@ -1,0 +1,15 @@
+# Here you can dcaefine all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://kedro.readthedocs.io/en/stable/data/data_catalog.html
+dji_stock:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/dji_stock_indx.csv
+
+dji_news:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/dji_news_data.csv
+
+dji_tweets:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/dji_tweet_data.csv 1

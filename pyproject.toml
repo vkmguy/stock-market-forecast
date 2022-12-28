@@ -1,0 +1,17 @@
+[tool.kedro]
+package_name = "stock_market_forecast"
+project_name = "Stock Market Forecast"
+project_version = "0.18.3"
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+addopts = """
+--cov-report term-missing \
+--cov src/stock_market_forecast -ra"""
+
+[tool.coverage.report]
+fail_under = 0
+show_missing = true
+exclude_lines = ["pragma: no cover", "raise NotImplementedError"]
