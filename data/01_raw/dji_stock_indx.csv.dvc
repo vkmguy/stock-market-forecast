@@ -1,0 +1,4 @@
+outs:
+- md5: b1128fefa7030410729334e537a2755c
+  size: 1027018
+  path: dji_stock_indx.csv

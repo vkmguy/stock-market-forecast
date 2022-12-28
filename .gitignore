@@ -23,6 +23,9 @@ logs/**
 # also keep the example dataset
 !data/01_raw/iris.csv
 
+# also keep dvc files in subfolders
+!data/**/*.dvc
+
 
 ##########################
 # Common files

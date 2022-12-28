@@ -8,8 +8,37 @@ dji_stock:
 
 dji_news:
   type: pandas.CSVDataSet
-  filepath: data/01_raw/dji_news_data.csv
+  filepath: data/01_raw/dji_stock_indx.csv
 
 dji_tweets:
   type: pandas.CSVDataSet
-  filepath: data/01_raw/dji_tweet_data.csv 1
+  filepath: data/01_raw/dji_tweet_data.csv
+
+nb_dji_stock:
+  type: pandas.CSVDataSet
+  filepath: ../data/01_raw/dji_stock_indx.csv
+
+nb_dji_news:
+  type: pandas.CSVDataSet
+  filepath: ../data/01_raw/dji_stock_indx.csv
+
+nb_dji_tweets:
+  type: pandas.CSVDataSet
+  filepath: ../data/01_raw/dji_tweet_data.csv
+
+processed_stock_data:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/processed_stock_data.csv
+
+preprocess_twitter_data:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/preprocess_twitter_data.csv
+
+model_input_table:
+  type: pandas.CSVDataSet
+  filepath: data/03_primary/model_input_table.csv
+
+tensorflow_model:
+  type: tensorflow.TensorFlowModelDataset
+  filepath: data/06_models/model.h5
+  versioned: true

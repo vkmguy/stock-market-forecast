@@ -1,0 +1,4 @@
+outs:
+- md5: f25d651222b0c4241423c2065f0d5ef9
+  size: 8322
+  path: dji_tweet_data.csv
