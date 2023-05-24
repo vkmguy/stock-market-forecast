@@ -14,10 +14,9 @@ def preprocess_stock_data(stockData: pd.DataFrame) -> pd.DataFrame:
     Returns:
 
     """
-    stockData["pct_change"] = stockData['adjusted_close'].shift(1) / stockData['adjusted_close'] - 1
-    stockData['direction'] = stockData['pct_change'].apply(lambda x: 1 if x > 0 else 0)
-    stockData['direction'] = stockData['direction'].shift(1)
-    return stockData
+    percentage_change = stockData['adjusted_close'].shift(1) / stockData['adjusted_close'] - 1
+    return stockData.assign(percentage_change=percentage_change,
+                            direction=percentage_change.apply(lambda x: 1 if x > 0 else 0).shift(1))
 
 
 def preprocess_twitter_data(twitterData: pd.DataFrame) -> pd.DataFrame:
@@ -33,7 +32,7 @@ def preprocess_twitter_data(twitterData: pd.DataFrame) -> pd.DataFrame:
 
 
 def create_model_input_table(
-    stockData: pd.DataFrame, twitterData: pd.DataFrame
+        stockData: pd.DataFrame, twitterData: pd.DataFrame
 ) -> pd.DataFrame:
     """Combines all data to create a model input table.
 
@@ -44,10 +43,13 @@ def create_model_input_table(
         model input table.
 
     """
+    # stratified shuffled split
     stockData['date'] = pd.to_datetime(stockData['date'])
     stockData.set_index('date', inplace=True)
     twitterData['date'] = pd.to_datetime(twitterData['date'])
     twitterData.set_index('date', inplace=True)
     merged_data = pd.merge(stockData, twitterData, how='inner', on='date')
     model_input_table = merged_data.dropna()
+    # use logging to find out the dropped rows - IMPORTANT
+    # Try using data from friday stock prices to fill in sat, sun - manage data first in the orignal data
     return model_input_table
